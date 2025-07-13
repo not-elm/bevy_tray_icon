@@ -66,7 +66,16 @@ jobs:
           toolchain: stable
           components: rustfmt, clippy
       - name: Install alsa and udev
-        run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
+        run: |
+          sudo apt-get update && sudo apt-get install --no-install-recommends libasound2-dev \
+            libudev-dev \
+            libasound2-dev \
+            libwebkit2gtk-4.1-dev \
+            pkg-config \
+            libudev-dev \
+            libssl-dev \
+            build-essential \
+            libxdo-dev
       - name: Run clippy
         run: cargo clippy --workspace --all-targets --all-features -- -Dwarnings
       - name: Run clippy
