@@ -1,6 +1,5 @@
 //! Convert system tray events to bevy events.
 
-
 use bevy::app::{App, Plugin, Update};
 use bevy::prelude::{Event, EventWriter};
 use tray_icon::menu::MenuId;
@@ -12,23 +11,16 @@ pub struct MenuEvent {
     pub id: MenuId,
 }
 
-
 pub(crate) struct MenuEventPlugin;
 
 impl Plugin for MenuEventPlugin {
     fn build(&self, app: &mut App) {
-        app
-            .add_event::<MenuEvent>()
-            .add_systems(Update, menu_event);
+        app.add_event::<MenuEvent>().add_systems(Update, menu_event);
     }
 }
 
-fn menu_event(
-    mut ew: EventWriter<MenuEvent>
-) {
+fn menu_event(mut ew: EventWriter<MenuEvent>) {
     while let Ok(event) = tray_icon::menu::MenuEvent::receiver().try_recv() {
-        ew.send(MenuEvent{
-            id: event.id
-        });
+        ew.write(MenuEvent { id: event.id });
     }
 }

@@ -1,9 +1,8 @@
 use tray_icon::menu;
-use tray_icon::menu::{IsMenuItem, MenuId, PredefinedMenuItem, Submenu};
 use tray_icon::menu::accelerator::Accelerator;
+use tray_icon::menu::{IsMenuItem, MenuId, PredefinedMenuItem, Submenu};
 
 use crate::resource::Menu;
-
 
 /// System Tray Menu Item.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
@@ -92,17 +91,25 @@ impl MenuItem {
 
     pub(super) fn as_dyn(&self) -> Box<dyn IsMenuItem> {
         match self {
-            MenuItem::Separator => {
-                Box::new(PredefinedMenuItem::separator())
-            }
-            MenuItem::SubMenu { id, text, enabled, menu } => {
+            MenuItem::Separator => Box::new(PredefinedMenuItem::separator()),
+            MenuItem::SubMenu {
+                id,
+                text,
+                enabled,
+                menu,
+            } => {
                 let sub_menu = Submenu::with_id(&id.0, text, *enabled);
                 for item in menu.0.iter().map(|item| item.as_dyn()) {
                     sub_menu.append(&*item).unwrap();
                 }
                 Box::new(sub_menu)
             }
-            MenuItem::Common { id, text, enabled, accelerator } => {
+            MenuItem::Common {
+                id,
+                text,
+                enabled,
+                accelerator,
+            } => {
                 let item = menu::MenuItem::with_id(&id.0, text, *enabled, *accelerator);
                 Box::new(item)
             }
