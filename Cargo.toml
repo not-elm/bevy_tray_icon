@@ -1,14 +1,15 @@
 [package]
 name = "bevy_tray_icon"
-version = "0.1.1"
+version = "0.2.0-dev"
 edition = "2021"
-authors = ["elm"]
+authors = ["notelm"]
 categories = ["game-development"]
 description = "Allows the use of tray-icon to manipulate the system tray."
 keywords = ["game", "gamedev", "bevy"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/not-elm/bevy_tray_icon"
+exclude = ["assets/"]
 
 [dependencies]
 bevy = { version = "0.16", default-features = false, features = [
@@ -20,7 +21,6 @@ thiserror = "2"
 
 [dev-dependencies]
 bevy = "0.16"
-bevy_test_helper = { git = "https://github.com/not-elm/bevy_test_helper", branch = "v0.16" }
 
 [lints.clippy]
 type_complexity = "allow"
