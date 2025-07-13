@@ -11,16 +11,16 @@ readme = "README.md"
 repository = "https://github.com/not-elm/bevy_tray_icon"
 
 [dependencies]
-bevy = { version = "0.13.2", default-features = false, features = [
+bevy = { version = "0.16", default-features = false, features = [
     "bevy_asset",
     "bevy_render"
 ] }
-tray-icon = "0.14.0"
-thiserror = "1.0.61"
+tray-icon = "0.21.0"
+thiserror = "2"
 
 [dev-dependencies]
-bevy = "0.13.2"
-bevy_test_helper = { git = "https://github.com/not-elm/bevy_test_helper" }
+bevy = "0.16"
+bevy_test_helper = { git = "https://github.com/not-elm/bevy_test_helper", branch = "v0.16" }
 
 [lints.clippy]
 type_complexity = "allow"

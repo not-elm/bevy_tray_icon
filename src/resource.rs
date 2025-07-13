@@ -1,22 +1,20 @@
 //! Resources used by this plugin.
 
-
 use bevy::asset::{Assets, Handle};
 use bevy::prelude::{Deref, Image, Resource};
-use tray_icon::{Icon, menu};
+use tray_icon::{menu, Icon};
 
 pub use menu_item::MenuItem;
 
 mod menu_item;
 
-
 /// After this resource is generated, the system tray is also generated.
-/// 
+///
 /// When you change a field in this resource, the system tray is also updated.
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Default, Resource)]
 pub struct TrayIcon {
-    /// The image handle of icon. 
+    /// The image handle of icon.
     pub icon: Option<Handle<Image>>,
 
     /// The text in tooltip displayed when mouse hovers over the system tray.
@@ -33,10 +31,9 @@ impl TrayIcon {
     pub(crate) fn as_icon(&self, images: &Assets<Image>) -> Option<Icon> {
         let id = self.icon.as_ref().map(|handle| handle.id())?;
         let image = images.get(id)?;
-        Icon::from_rgba(image.data.clone(), image.width(), image.height()).ok()
+        Icon::from_rgba(image.data.clone()?, image.width(), image.height()).ok()
     }
 }
-
 
 /// The system tray's menu.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
@@ -48,7 +45,7 @@ impl Menu {
     pub const fn new(items: Vec<MenuItem>) -> Self {
         Self(items)
     }
-    
+
     /// Enables or disables the specified menu.
     pub fn set_enable(&mut self, menu_id: &str, enable: bool) -> crate::error::Result {
         for menu in self.0.iter_mut() {
@@ -59,7 +56,9 @@ impl Menu {
                         return Ok(());
                     }
                 }
-                MenuItem::SubMenu { id, enabled, menu, .. } => {
+                MenuItem::SubMenu {
+                    id, enabled, menu, ..
+                } => {
                     if id.0 == menu_id {
                         *enabled = enable;
                         return Ok(());
@@ -90,16 +89,13 @@ impl Menu {
 #[derive(Deref)]
 pub(crate) struct RealTrayIcon(pub(crate) tray_icon::TrayIcon);
 
-
 #[cfg(test)]
 mod tests {
     use crate::resource::{Menu, MenuItem};
 
     #[test]
     fn enable_common() {
-        let mut menu = Menu::new(vec![
-            MenuItem::common("test", "test", false, None)
-        ]);
+        let mut menu = Menu::new(vec![MenuItem::common("test", "test", false, None)]);
         menu.set_enable("test", true).unwrap();
         assert!(check_enabled("test", &menu));
     }
@@ -118,9 +114,12 @@ mod tests {
     fn enable_item_in_submenu() {
         let mut menu = Menu::new(vec![
             MenuItem::common("test", "test", false, None),
-            MenuItem::submenu("sub", "sub", false, Menu::new(vec![
-                MenuItem::common("sub_item", "sub_item", false, None)
-            ])),
+            MenuItem::submenu(
+                "sub",
+                "sub",
+                false,
+                Menu::new(vec![MenuItem::common("sub_item", "sub_item", false, None)]),
+            ),
         ]);
         menu.set_enable("sub_item", true).unwrap();
         assert!(check_enabled("sub_item", &menu));
@@ -129,7 +128,9 @@ mod tests {
     fn check_enabled(target_id: &str, menu: &Menu) -> bool {
         for item in menu.0.iter() {
             match item {
-                MenuItem::SubMenu { id, menu, enabled, .. } => {
+                MenuItem::SubMenu {
+                    id, menu, enabled, ..
+                } => {
                     if id == target_id {
                         return *enabled;
                     } else if check_enabled(target_id, menu) {
