@@ -24,7 +24,16 @@ jobs:
         with:
           toolchain: stable
       - name: Install alsa and udev
-        run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
+        run: |
+          sudo apt-get update && sudo apt-get install --no-install-recommends libasound2-dev \
+            libudev-dev \
+            libasound2-dev \
+            libwebkit2gtk-4.1-dev \
+            pkg-config \
+            libudev-dev \
+            libssl-dev \
+            build-essential \
+            libxdo-dev
         if: runner.os == 'linux'
       - name: Build & run tests
         run: cargo test
@@ -45,7 +54,16 @@ jobs:
         with:
           toolchain: stable
       - name: Install alsa and udev
-        run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev
+        run: |
+          sudo apt-get update && sudo apt-get install --no-install-recommends libasound2-dev \
+            libudev-dev \
+            libasound2-dev \
+            libwebkit2gtk-4.1-dev \
+            pkg-config \
+            libudev-dev \
+            libssl-dev \
+            build-essential \
+            libxdo-dev
       - name: Run doc tests with all features (this also compiles README examples)
         run: cargo test --doc --all-features
   lint:
