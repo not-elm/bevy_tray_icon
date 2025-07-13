@@ -41,7 +41,6 @@ fn create_tray(mut commands: Commands, asset_server: Res<AssetServer>) {
             MenuItem::common("visible", "visible", false, None),
             MenuItem::common("hide", "hide", true, None),
         ]),
-        #[cfg(target_os = "macos")]
         show_menu_on_left_click: true,
     });
 }

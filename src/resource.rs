@@ -23,7 +23,8 @@ pub struct TrayIcon {
     /// The menu displayed when right-clicking on the system tray.
     pub menu: Menu,
 
-    #[cfg(target_os = "macos")]
+    /// Whether to show the menu when left-clicking on the system tray.
+    /// This flag is only effective on macOS.
     pub show_menu_on_left_click: bool,
 }
 
