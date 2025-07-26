@@ -20,7 +20,8 @@ Please see [here](https://github.com/not-elm/bevy_tray_icon/blob/main/CHANGELOG.
 
 | bevy_tray_icon | bevy   |
 |----------------|--------|
-| 0.1.0          | 0.13.2 |
+| 0.2.0~         | 0.16.0 |
+| 0.1.0~         | 0.13.2 |
 
 ## License
 
