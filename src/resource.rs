@@ -1,7 +1,7 @@
 //! Resources used by this plugin.
 
 use bevy::asset::{Assets, Handle};
-use bevy::prelude::{Deref, Image, Resource};
+use bevy::prelude::{Deref, DerefMut, Image, Resource};
 use tray_icon::{menu, Icon};
 
 pub use menu_item::MenuItem;
@@ -37,7 +37,7 @@ impl TrayIcon {
 }
 
 /// The system tray's menu.
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Default)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Default, Deref, DerefMut)]
 pub struct Menu(Vec<MenuItem>);
 
 impl Menu {
