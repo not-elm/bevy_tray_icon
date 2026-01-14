@@ -1,5 +1,7 @@
 ## v0.3.0
 
+[release notes](https://github.com/not-elm/bevy_tray_icon/releases/tag/v0.3.0)
+
 ### Breaking Changes
 
  - Upgrade Bevy to v0.18
