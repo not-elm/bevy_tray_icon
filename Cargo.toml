@@ -1,6 +1,6 @@
 [package]
 name = "bevy_tray_icon"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["notelm"]
 categories = ["game-development"]
@@ -12,7 +12,7 @@ repository = "https://github.com/not-elm/bevy_tray_icon"
 exclude = ["assets/"]
 
 [dependencies]
-bevy = { version = "0.16", default-features = false, features = [
+bevy = { version = "0.18", default-features = false, features = [
     "bevy_asset",
     "bevy_render"
 ] }
@@ -20,7 +20,7 @@ tray-icon = "0.21.0"
 thiserror = "2"
 
 [dev-dependencies]
-bevy = "0.16"
+bevy = "0.18"
 
 [lints.clippy]
 type_complexity = "allow"
