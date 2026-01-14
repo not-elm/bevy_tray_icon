@@ -6,7 +6,7 @@
 
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
-use bevy_tray_icon::plugin::menu_event::MenuEvent;
+use bevy_tray_icon::plugin::menu_event::MenuMessage;
 use bevy_tray_icon::plugin::TrayIconPlugin;
 use bevy_tray_icon::resource::{Menu, MenuItem, TrayIcon};
 
@@ -26,7 +26,7 @@ fn main() {
         .add_systems(
             Update,
             (
-                menu_event,
+                menu_messages,
                 change_menu_enable.run_if(resource_exists::<TrayIcon>),
             ),
         )
@@ -45,7 +45,7 @@ fn create_tray(mut commands: Commands, asset_server: Res<AssetServer>) {
     });
 }
 
-fn menu_event(mut er: EventReader<MenuEvent>, mut window: Query<&mut Window, With<PrimaryWindow>>) {
+fn menu_messages(mut er: MessageReader<MenuMessage>, mut window: Query<&mut Window, With<PrimaryWindow>>) {
     for e in er.read() {
         match e.id.0.as_str() {
             "visible" => {
