@@ -45,7 +45,10 @@ fn create_tray(mut commands: Commands, asset_server: Res<AssetServer>) {
     });
 }
 
-fn menu_messages(mut er: MessageReader<MenuMessage>, mut window: Query<&mut Window, With<PrimaryWindow>>) {
+fn menu_messages(
+    mut er: MessageReader<MenuMessage>,
+    mut window: Query<&mut Window, With<PrimaryWindow>>,
+) {
     for e in er.read() {
         match e.id.0.as_str() {
             "visible" => {

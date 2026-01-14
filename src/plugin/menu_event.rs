@@ -14,7 +14,8 @@ pub(crate) struct MenuEventPlugin;
 
 impl Plugin for MenuEventPlugin {
     fn build(&self, app: &mut App) {
-        app.add_message::<MenuMessage>().add_systems(Update, menu_event);
+        app.add_message::<MenuMessage>()
+            .add_systems(Update, menu_event);
     }
 }
 
