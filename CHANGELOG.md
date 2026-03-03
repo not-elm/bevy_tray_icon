@@ -1,3 +1,12 @@
+## v0.3.1
+
+[release notes](https://github.com/not-elm/bevy_tray_icon/releases/tag/v0.3.1)
+
+### Bug Fixes
+
+- Fix tray icon not being set when the image asset hasn't loaded yet
+
+
 ## v0.3.0
 
 [release notes](https://github.com/not-elm/bevy_tray_icon/releases/tag/v0.3.0)
