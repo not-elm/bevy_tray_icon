@@ -138,10 +138,8 @@ mod tests {
                         return true;
                     }
                 }
-                MenuItem::Common { id, enabled, .. } => {
-                    if id == target_id {
-                        return *enabled;
-                    }
+                MenuItem::Common { id, enabled, .. } if id == target_id => {
+                    return *enabled;
                 }
                 _ => {}
             }
