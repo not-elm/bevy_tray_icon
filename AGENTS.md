@@ -23,4 +23,11 @@ Recent history shows short, action-focused commit messages like `add: change log
 - Notes about compatibility with Bevy versions if impacted.
 
 ## Notes
-This crate targets Bevy `0.18` and uses the `tray-icon` crate. If you change compatibility, update `README.md` and `CHANGELOG.md` accordingly.
+This crate targets Bevy `0.20` and uses the `tray-icon` crate. If you change compatibility, update the compatibility table in `README.md`.
+
+## Releasing
+1. Bump `version` in `Cargo.toml` and merge to main.
+2. Run `git tag vX.Y.Z && git push origin vX.Y.Z`. The `Publish` workflow publishes to crates.io and creates a GitHub Release with generated notes.
+3. Release notes are built from merged PRs only. Label PRs with `breaking-change`, `enhancement`, `improvement`, or `bug` to group them.
+4. Publishing requires the repository secret `CARGO_REGISTRY_TOKEN`.
+5. If publishing succeeded but creating the Release failed, run `gh release create vX.Y.Z --generate-notes`.
