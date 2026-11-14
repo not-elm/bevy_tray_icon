@@ -14,7 +14,7 @@ This library allows the use of [tray-icon](https://github.com/tauri-apps/tray-ic
 
 ## ChangeLog
 
-Please see [here](https://github.com/not-elm/bevy_tray_icon/blob/main/CHANGELOG.md).
+Please see [here](https://github.com/not-elm/bevy_tray_icon/releases).
 
 ## Compatible Bevy versions
 
