@@ -27,7 +27,7 @@ impl Plugin for TrayIconPlugin {
 
 fn create_tray(world: &mut World) {
     let real = TrayIconBuilder::new().build().unwrap();
-    world.insert_non_send_resource(RealTrayIcon(real));
+    world.insert_non_send(RealTrayIcon(real));
 }
 
 fn update_tray(
